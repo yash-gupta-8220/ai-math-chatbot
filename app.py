@@ -3,7 +3,11 @@ import os
 from groq import Groq
 
 # 🔑 Add your API key here
-client = Groq(api_key="your_key")
+api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    st.error("API key not found")
+    st.stop()
+client = Groq(api_key=api_key)
 
 # Page settings
 st.set_page_config(page_title="Yash AI Math Chatbot", page_icon="🧮")
